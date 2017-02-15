@@ -1,0 +1,81 @@
+<DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+      <script src="js/Matrix4.js"></script>
+      <script src="js/3dPlotterSTACK.js"></script>
+
+      <script src="js/shaders.js"></script>
+      <script src="js/Camera.js"></script>
+      <script src="js/Vector3.js"></script>
+      <script src="js/KFH-Utilities.js"></script>
+      <script src="js/Algebra.js"></script>
+
+      <style>
+      .errorString{
+        /*display : none;*/
+        color   : red;
+      }
+      body{
+	background-color : gray;
+      }
+      </style>
+   </head>
+   <body>
+      <center>
+      <canvas id="canvas" width="400" height="400">HTML5 not supported by this browser</canvas><br>
+      <table border="1">
+         <tr>
+            <td>
+               <center>
+                  Mode:
+                  <select id="mode">
+                     <option value="surface">Surface</option>
+                     <option value="paraCurve">Parametric Curve</option>
+                     <option value="paraSurf">Parametric Surface</option>
+                     <option value="cylindrical">Cylindrical</option>
+                     <option value="spherical">Spherical</option>
+                   </select>
+		   <br>
+		   Examples:
+		   <select id="examples">
+		      <option value="">Select One</option>
+		      <option value="5sin(sqrt(x^2+y^2))/sqrt(x^2+y^2)">Mexican Hat</option>
+		      <option value="sin(x)^2+cos(y)^2">Wavy Sin Cos</option>
+		      <option value="sin(xy)">More Sin</option>
+		   </select>
+               </center>
+            </td>
+            <td>
+               <div id="surfaceInput">
+                  <i>f(x,y)=</i><input id="expression" type="text" size="5">
+               </div>
+               <div id="paraCurveInput" style="display : none">
+                  <i>x(t)=</i><input id="pcx-expression" type="text" size="5"><br>
+                  <i>y(t)=</i><input id="pcy-expression" type="text" size="5"><br>
+                  <i>z(t)=</i><input id="pcz-expression" type="text" size="5"><br>
+               </div>
+               <div id="paraSurfInput" style="display : none">
+                  <i>x(t,s)=</i><input id="psx-expression" type="text" size="5"><br>
+                  <i>y(t,s)=</i><input id="psy-expression" type="text" size="5"><br>
+                  <i>z(t,s)=</i><input id="psz-expression" type="text" size="5"><br>
+               </div>
+               <div id="cylindricalInput" style="display : none">
+                  <i>r(&#x03b8)=</i><input id="cylindrical-expression" type="text" size="5">
+               </div>
+               <div id="sphericalInput" style="display : none">
+                  <i>r(&#x03b8,&#x03d5)=</i><input id="spherical-expression" type="text" size="5">
+               </div>
+               <p id="errorString" class="errorString"></p>
+               <center>
+                  <button id="plotButton">Plot</button>
+               </center>
+            </td>
+         </tr>
+      </table>
+      </center>
+      <button id="helpButton">Help</button>
+      <p id="xAng">X-Angle=0</p>
+      <p id="yAng">Y-Angle=0</p>
+   </body>
+</html>

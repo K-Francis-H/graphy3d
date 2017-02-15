@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <script>
+         function returnToGraph()
+         {
+            window.open("3dPlotter.html", "_self");
+         }
+         //prevents nav problems on FFOS
+         function gotoSite(url)
+         {
+            window.open(url);
+         }
+       </script>
+       <style>
+          footer{
+             font-size : 6px;
+          }
+          lh{
+             font-style : bold;
+             font-size : 14px;
+          }
+          li, p{
+             font-size : 10.5px
+          }
+      </style>
+    </head>
+    <body>
+       <button onclick="returnToGraph()">graph</button>
+       <h6>Example Input:</h6>
+       <p>Surface: f(x,y)=2y+sin(x)^3<br>
+       Parametric Curve: y(t)=t, x(t)=cos(t), z(t)=sin(t) <strong>(use t for &#x03b8)</strong><br>Parametric Surface: x(s,t)=3cos(s)cos(t), y(s,t)=8cos(s)sin(t), z(s,t)=2sin(s)<br>
+       Cylindrical: r(t)=sin(4t)/2, (use t for &#x03b8)<br>Spherical: r(t,p)=6cos(t)sin(t)sin(p) <strong>(use t for &#x03b8 and p for &#x03d5)</strong>
+</p>
+       <p>Graphy 3D supports implicit multiplication and the 'a^b' syntax for exponentiation.</p>
+       <ul>
+          <lh><strong>Available Constants:</strong></lh> 
+	  <li>E</li>
+	  <li>PI</li>	  
+          <lh><strong>Available Functions:</strong></lh> 
+          <li>acos()</li>
+          <li>asin()</li>
+          <li>atan()</li>
+          <li>cos()</li>
+          <li>sin()</li>
+          <li>tan()</li>
+          <li>pow(n,m) - can also use a^b syntax</li>
+          <li>exp()</li>
+          <li>abs()</li>
+          <li>log() </li>
+          <li>sqrt()</li>
+       </ul>
+
+      <p>Thank you for downloading Graphy3D. The source to this program will be made available sometime in the future. Sorry, I am very busy right now. Some of my other HTML5 and WebGL projects are also available here:<a href="#" onclick="gotoSite('http://kfh-html5-projects.pancakeapps.com')">http://kfh-html5-projects.pancakeapps.com</a>
+      </p>
+
+   </body>
+</html>
+

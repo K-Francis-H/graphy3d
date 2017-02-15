@@ -1,0 +1,117 @@
+//Matrix4.js
+//TODO implement scalar operations as well...
+function Matrix4( floatArr ){
+
+
+   if (Object.prototype.toString.call(floatArr) === "[object Float32Array]" && floatArr.length === Matrix4.SIZE) {
+        this.vals = floatArr;
+   }
+   else{ /*is not float32array*/
+      //do something drastic
+      console.log("error: "+floatArr+" is not a Float32Array or its length: "+floatArr.length+" is not "+Matrix4.SIZE);
+   }
+
+   Matrix4.prototype.toString = function matrix4ToString(){
+      return "[object Matrix4]";
+   }
+
+   //adds matrix a to this one if it it is a 4x4 (16) float32array
+   this.add = function(a){//add 4x4 matrix
+      if (Object.prototype.toString.call(a) === "[object Float32Array]" && a.length === 16) {
+         for(var i=0; i < Matrix4.SIZE; i++)
+            this.vals[i] += a[i];
+      }
+      else if(a.toString() === "[object Matrix4]"){
+         for(var i=0; i < Matrix4.SIZE; i++)
+            this.vals[i] += a.vals[i];
+      }
+   }
+
+   this.sub = function(a){
+      if (Object.prototype.toString.call(a) === "[object Float32Array]" && a.length === 16) {
+         for(var i=0; i < Matrix4.SIZE; i++)
+            this.vals[i] -= a[i];
+      }
+      else if(a.toString() === "[object Matrix4]"){
+         for(var i=0; i < Matrix4.SIZE; i++)
+            this.vals[i] -= a.vals[i];
+      }
+   }
+   
+   this.mul = function(a){
+      if (Object.prototype.toString.call(a) === "[object Float32Array]" && a.length === 16) {
+         var tmp = new Float32Array(16); //init to zero
+         for(var i=0; i < Matrix4.SIZE; i++)
+            for(var j=0; j < Matrix4.LENGTH; j++)
+               tmp[i] += this.vals[j]*a[j*Matrix4.LENGTH]; 
+       }
+      else if(a.toString() === "[object Matrix4]"){
+         var tmp = new Float32Array(16); //init to zero
+         for(var i=0; i < Matrix4.SIZE; i++)
+            for(var j=0; j < Matrix4.LENGTH; j++)
+               tmp[i] += this.vals[j]*a.vals[j*Matrix4.LENGTH]; 
+      }
+    }
+}
+
+   Matrix4.LENGTH = 4; //4x4 Matrix
+   Matrix4.SIZE = 16;  //16 values
+//TODO check b as well...
+    Matrix4.add = function( a, b ){
+         var c = new Float32Array(Matrix4.SIZE);
+         if (Object.prototype.toString.call(a) === "[object Float32Array]" && a.length === 16) {
+            for(var i=0; i < Matrix4.SIZE; i++)
+               c[i] = a[i] + b[i];
+            return c;
+         }
+         else if(a.toString() === "[object Matrix4]"){
+            for(var i=0; i < Matrix4.SIZE; i++)
+               c[i] = a.vals[i] + b.vals[i];
+            return new Matrix4(c);
+         }
+    }
+
+    Matrix4.sub = function( a, b ){
+         var c = new Float32Array(Matrix4.SIZE);
+         if (Object.prototype.toString.call(a) === "[object Float32Array]" && a.length === 16) {
+            for(var i=0; i < Matrix4.SIZE; i++)
+               c[i] = a[i] + b[i];
+            return c;
+         }
+         else if(a.toString() === "[object Matrix4]"){
+            for(var i=0; i < Matrix4.SIZE; i++)
+               c[i] = a.vals[i] + b.vals[i];
+            return new Matrix4(c);
+         }
+    }
+
+for(var i=0; i < Matrix4.LENGTH; i++){
+   for(var j=0; j < Matrix4.LENGTH; j++){
+      
+
+
+    Matrix4.mul = function( a, b ){
+         var c = new Float32Array(Matrix4.SIZE);
+         if (Object.prototype.toString.call(a) === "[object Float32Array]" && a.length === 16) {
+            for(var i=0; i < Matrix4.LENGTH; i++){
+               for(var j=0; j < Matrix4.LENGTH; j++){
+                  c[i*Matrix4.LENGTH+j]=0;
+                  for(var k=0; k < Matrix4.LENGTH; k++){
+                     c[Matrix4.LENGTH*i+j] += a[Matrix4.LENGTH*i+k]*b[Matrix4.LENGTH*k+j];
+                  }
+               }
+            } 
+            return c;
+         }
+         else if(a.toString() === "[object Matrix4]"){
+            var row = 0;
+            for( var i=0; i < Matrix4.SIZE; i++){
+                for( var j=0; j < Matrix4.LENGTH; j++){
+                   c[i] += a.vals[j]*b.vals[j*Matrix4.LENGTH];
+                }
+                row+=Matrix4.LENGTH;
+            }
+            return new Matrix4(c);
+         }
+    }
+//end Matrix4
